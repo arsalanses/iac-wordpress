@@ -1,0 +1,11 @@
+- name: Play for wordpress server
+  hosts: main
+  roles:
+    - essentials
+    - swap
+    - docker
+    - traefik
+    - mysql
+    - backup
+    - wordpress
+    - reboot

@@ -1,0 +1,36 @@
+services:
+  wordpress:
+    image: docker.io/bitnami/wordpress:6
+#    ports:
+#      - '80:8080'
+#      - '443:8443'
+#    volumes:
+#      - 'wordpress_data:/bitnami/wordpress'
+    depends_on:
+      - mysql
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - WORDPRESS_DATABASE_HOST=mysql
+      - WORDPRESS_DATABASE_PORT_NUMBER=3306
+      - WORDPRESS_DATABASE_USER=bn_wordpress
+      - WORDPRESS_DATABASE_NAME=bitnami_wordpress
+      - WORDPRESS_USERNAME=user
+      - WORDPRESS_PASSWORD=1234
+      - WORDPRESS_ENABLE_REVERSE_PROXY=yes
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.wpblog.entrypoints=web"
+      - "traefik.http.routers.wpblog.rule=Host(`example.com`)"
+      - "traefik.http.routers.wpblog.tls=false"
+#      - "traefik.http.routers.blog.tls.certresolver=letsencrypt"
+      - "traefik.http.services.wpblog.loadbalancer.server.port=8080"
+
+# volumes:
+#   wordpress_data:
+
+networks:
+  web:
+    external: true

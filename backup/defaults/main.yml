@@ -1,0 +1,4 @@
+s3_endpoint: ""
+access_key: ""
+secret_key: ""
+alias: "backup"
