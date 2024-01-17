@@ -1,7 +1,7 @@
 - name: Launch mysql database container
   community.docker.docker_container:
     name: mysql
-    image: mysql:8.0-debian
+    image: mysql:8.2.0
     recreate: true
     restart_policy: always
     pull: true
@@ -27,11 +27,3 @@
       timeout: 10s
       retries: 3
       start_period: 30s
-    # device_read_bps:
-    #   # Limit read rate for /dev/sda to 20 mebibytes per second
-    #   - path: /dev/vda1
-    #     rate: 20M
-    # device_read_iops:
-    #   # Limit read rate for /dev/sdb to 300 IO per second
-    #   - path: /dev/vdb
-    #     rate: 300
