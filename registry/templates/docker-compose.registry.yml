@@ -1,36 +1,52 @@
 services:
-  registry:
-    image: registry:2.7
-    environment:
-      - REGISTRY_HTTP_SECRET=my_registry_secret
-      - REGISTRY_STORAGE_DELETE_ENABLED=true
+  registry-server:
+    image: registry:2.8.3
+    restart: always
+    container_name: registry-server
     volumes:
-      - /opt/docker-registry:/var/lib/registry
-      - ./registry-config/simple.yml:/etc/docker/registry/config.yml
+      - registry_data:/var/lib/registry
+      - ./config.yml:/etc/docker/registry/config.yml
+      - ./htpasswd:/etc/docker/registry/htpasswd
     networks:
       - internal
 
-  ui:
-    image: joxit/docker-registry-ui:latest
-    environment:
-      - REGISTRY_TITLE=Private Registry
-      - NGINX_PROXY_PASS_URL=http://registry:5000
-      - SINGLE_REGISTRY=true
+  registry-ui:
+    image: joxit/docker-registry-ui:main
+    restart: always
+    container_name: registry-ui
     depends_on:
-      - registry
+      - registry-server
     networks:
       - web
       - internal
+    # ports:
+    #   - 80:80
+    environment:
+      - SINGLE_REGISTRY=true
+      - REGISTRY_TITLE=Registry
+      - NGINX_PROXY_PASS_URL=http://registry-server:5000
+
+      - DELETE_IMAGES=true
+      - SHOW_CONTENT_DIGEST=true
+      - SHOW_CATALOG_NB_TAGS=true
+      - CATALOG_MIN_BRANCHES=1
+      - CATALOG_MAX_BRANCHES=1
+      - TAGLIST_PAGE_SIZE=100
+      - REGISTRY_SECURED=false
+      - CATALOG_ELEMENTS_LIMIT=1000
     labels:
-      traefik.backend: 'registry.mydomain.com'
-      traefik.frontend.rule: 'Host:registry.mydomain.com'
       traefik.enable: 'true'
+      traefik.docker.network: 'web'
+      traefik.backend: 'registry-wp.arsalanse.ir'
+      traefik.frontend.rule: 'Host:registry-wp.arsalanse.ir'
       traefik.port: 80
-      traefik.docker.network: 'traefik-net'
-      traefik.frontend.auth.basic: 'admin:$apr1$XXrpwZre$ItZSXpoeB6bdPLCGT7eXG0'
+      traefik.frontend.auth.basic: 'admin:$2y$05$dBabEFr78GgH93mGx1KMQucYhEC4iJle.GhDuRdvvwzhTyQmEfWUe'
       traefik.frontend.passHostHeader: 'true'
 
 networks:
   internal:
   proxy:
     external: true
+
+volumes:
+  registry_data:

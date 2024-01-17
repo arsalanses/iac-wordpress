@@ -5,6 +5,7 @@
     - swap
     - docker
     - traefik
+    - registry
     - mysql
     - backup
     - wordpress

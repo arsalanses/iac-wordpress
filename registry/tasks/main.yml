@@ -14,6 +14,8 @@
     mode: '0644'
   loop:
     - docker-compose.registry.yml
+    - config.yml
+    - htpasswd
 
 - name: Ensure registry compose files are up
   community.docker.docker_compose:
