@@ -1,9 +1,9 @@
-- name: Install docker
-  ansible.builtin.apt:
-    update_cache: true
-    name: docker.io
-    state: present
-  notify: Restart docker
+# - name: Install docker
+#   ansible.builtin.apt:
+#     update_cache: true
+#     name: docker.io
+#     state: present
+#   notify: Restart docker
 
 - name: /etc/docker directory
   ansible.builtin.file:
@@ -39,5 +39,5 @@
     state: present
   notify: Restart docker
 
-- name: Include docker-compose tasks
-  ansible.builtin.include_tasks: docker-compose.yml
+# - name: Include docker-compose tasks
+#   ansible.builtin.include_tasks: docker-compose.yml
