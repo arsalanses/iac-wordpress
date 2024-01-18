@@ -39,7 +39,7 @@ services:
       - "traefik.docker.network=web"
       - "traefik.http.middlewares.registry-auth.basicauth.users=admin:$$2y$$05$$Nafcnu2cf9pJ570CPerNZO/6hOZBlZSCSnkNfJXQrHx8iGkQ82X3W"
 
-      - "traefik.http.routers.registry-ui.entrypoints=web"
+      - "traefik.http.routers.registry-ui.entrypoints=http"
       - "traefik.http.routers.registry-ui.rule=Host(`registry-wp.arsalanse.ir`)"
       - "traefik.http.routers.registry-ui.tls=false"
       # - "traefik.http.routers.registry-ui.tls.certresolver=letsencrypt"

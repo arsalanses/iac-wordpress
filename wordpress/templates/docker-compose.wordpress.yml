@@ -20,7 +20,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.wpblog.entrypoints=web"
+      - "traefik.http.routers.wpblog.entrypoints=http"
       - "traefik.http.routers.wpblog.rule=Host(`staging-wp.arsalanse.ir`)"
       - "traefik.http.routers.wpblog.tls=false"
       # - "traefik.http.routers.wpblog.tls.certresolver=letsencrypt"
