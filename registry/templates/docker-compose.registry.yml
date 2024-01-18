@@ -37,7 +37,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.middlewares.registry-auth.basicauth.users=admin:$2y$05$dBabEFr78GgH93mGx1KMQucYhEC4iJle.GhDuRdvvwzhTyQmEfWUe"
+      - "traefik.http.middlewares.registry-auth.basicauth.users=admin:$$2y$$05$$Nafcnu2cf9pJ570CPerNZO/6hOZBlZSCSnkNfJXQrHx8iGkQ82X3W"
 
       - "traefik.http.routers.registry-ui.entrypoints=web"
       - "traefik.http.routers.registry-ui.rule=Host(`registry-wp.arsalanse.ir`)"
