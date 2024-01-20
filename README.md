@@ -1,5 +1,7 @@
 # Wordpress IaC (Infrastructure as code)
 
+This repository contains an idempotent Ansible playbook for automating the installation of WordPress, a private Docker registry, a database, a backup script, and hardening.
+
 ## Roles
 - [x] Essentials
 - [x] Swap
