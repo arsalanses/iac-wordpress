@@ -2,6 +2,8 @@ services:
   registry-server:
     image: registry:2.8.3
     restart: always
+    ports:
+      - 127.0.0.1:5000:5000
     container_name: registry-server
     volumes:
       - registry_data:/var/lib/registry

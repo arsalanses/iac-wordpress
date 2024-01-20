@@ -27,4 +27,7 @@ ansible-playbook setup.yml
 ```
 Swap: 2G
 Traefik: auth
+MySQL: namings
+Backup
+registry
 ```
