@@ -1,5 +1,9 @@
 # Wordpress IaC (Infrastructure as code)
 
+<p align="center">
+    <img src="./architecture.png" alt="architecture" width="85%">
+</p>
+
 This repository contains an idempotent Ansible playbook for automating the installation of WordPress, a private Docker registry, a database, a backup script, and hardening.
 
 ## Roles
@@ -7,9 +11,9 @@ This repository contains an idempotent Ansible playbook for automating the insta
 - [x] Swap
 - [x] Docker
 - [x] Traefik
-- [x] registry
-- [x] wordpress
-- [x] backup
+- [x] Registry
+- [x] WordPress
+- [x] Backup
 - [x] Reboot
 
 ## Setup
@@ -36,7 +40,11 @@ registry
 
 ## Links
 ```
-https://registry-wp.arsalanse.ir/
-https://traefik-wp.arsalanse.ir/
-https://staging-wp.arsalanse.ir/
+https://registry-wp.arsalanse.ir
+https://traefik-wp.arsalanse.ir
+https://staging-wp.arsalanse.ir
 ```
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
