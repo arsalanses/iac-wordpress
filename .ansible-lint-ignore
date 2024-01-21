@@ -1,1 +1,4 @@
-.github
+exclude_paths:
+    - .github/
+
+offline: true
